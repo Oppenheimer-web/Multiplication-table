@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            width: 40%;
+            height: 50vh;
+            background: linear-gradient(blue,yellow);
+        }
+        h2{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Time Table Generator</h2>
+        <p>Starting From: <input type="text" id="startInput"></p>
+        <p>Ends at: <input type="text" id="endInput"></p>
+        <div class="btt">
+            <button onclick="Gen()">Generate</button>
+            <button onclick="ref()">Referesh</button>
+        </div>
+        <div id="result" style="display: flex;flex-direction: column;"></div>
+    </div>
+</body>
+</html>
+<script>
+    let startInput = document.getElementById("startInput")
+    let endInput = document.getElementById("endInput")
+    let result = document.getElementById("result")
+    function Gen() {
+        let val = startInput.value.trim()
+        let val2 = endInput.value.trim()
+        let sult1 = Number(val) 
+        let sult2 = Number(val2) 
+        if (sult1 < sult2) {
+            for (let i = 0; i <= sult2; i++) {
+                let line = ""
+                for (let j = sult1; j <= sult2; j++) {
+
+                    for (let u = 0; u <= 12; u++) {
+                        line = line + `${j} x ${u} = ${j * u}\n`
+                        
+                    }
+                    
+                }
+                console.log(line);
+                result.innerHTML = line
+                
+            }
+        } else if (sult1 > sult2){
+            for (let i = 0; i <= sult2; i++) {
+                let line = ""
+
+                for (let j = sult1; j >= sult2; j--) {
+
+                    for (let u = 0; u <= 12; u++) {
+                        line = line + `${j} x ${u} = ${j * u}\n`
+                        
+                    }
+                    
+                }
+                console.log(line);
+                result.innerHTML = line 
+                
+            } 
+        }
+        
+    }
+    function ref() {
+        startInput.value = ""
+        endInput.value = ""
+        result.innerHTML = ""
+    }
+
+</script>
